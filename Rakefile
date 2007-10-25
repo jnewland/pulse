@@ -1,6 +1,7 @@
 require 'rubygems'
 require 'rake/gempackagetask'
 require 'rake/testtask'
+require 'rake/rdoctask'
 
 require 'open-uri'
 
@@ -23,6 +24,15 @@ end
 Rake::GemPackageTask.new(specification) do |package|
   package.need_zip = true
   package.need_tar = true
+end
+
+desc 'Generate RDoc'
+Rake::RDocTask.new do |task|
+  task.main = 'README'
+  task.title = 'Pulse'
+  task.rdoc_dir = 'doc'
+  task.options << "--line-numbers" << "--inline-source"
+  task.rdoc_files.include('README', 'lib/**/*.rb')
 end
 
 desc "Run all tests"
