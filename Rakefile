@@ -11,13 +11,12 @@ Gem::manage_gems
 
 specification = Gem::Specification.new do |s|
   s.name = "pulse"
-  s.version = VERSION
+  s.version = Version::VERSION
   s.author = "Paul Gross"
   s.email = "pgross@gmail.com"
   s.homepage = "http://www.pgrs.net"
   s.summary = "Adds a pulse url to Ruby on Rails."
-  s.files = FileList["README", "init.rb", "lib/**/*.rb"].to_a
-  s.autorequire = "init"
+  s.files = FileList["README", "install.rb", "init.rb", "lib/**/*.rb"].to_a
 end
 
 Rake::GemPackageTask.new(specification) do |package|

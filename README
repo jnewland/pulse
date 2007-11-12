@@ -1,35 +1,29 @@
 = Pulse
 
-Pulse adds an action to your rails project that can be used for external health checking.  The most common use is by a http proxy such as haproxy[http://haproxy.1wt.eu/].  A proxy can be configured to hit your servers at a specified URL to see if the servers are healty.  By default, they use the "/" URL, but in many sites, this can have side effects like creating a session.  Pulse adds a "/pulse" URL which has no session and no logging.
+Pulse adds an action to your rails project that can be used for external health checking.  The most common 
+use is by a http proxy such as haproxy[http://haproxy.1wt.eu/].  A proxy can be configured to hit your servers 
+at a specified URL to see if the servers are healty.  By default, they use the "/" URL, but in many sites, this 
+can have side effects like creating a session.  Pulse adds a controller and action (usually at the "/pulse" URL) 
+which has no session and no logging.
 
 by Paul[http://www.prgs.net] Gross[http://www.prgs.net]
 
 == Installation
 
-Pulse can be installed in 2 ways:
+Pulse should be installed as a plugin:
 
-1. Installed gem
-2. Unpacked gem in vendor folder
+  cd /path/to/rails/project
+  ruby script/plugin install http://pulse.rubyforge.org/svn/tags/pulse-0.2.0
 
-=== Option 1: Installed gem
+And then add a route to config/routes.rb:
 
-Just run:
+  map.pulse 'pulse'
 
-  sudo gem install pulse
+This configures pulse to work at the 'pulse' URL.  If you would rather use a different URL:
 
-And then add the following line to config/environment.rb
-
-  require 'pulse'
-
-=== Option 2: Unpacked gem in vendor folder
-
-Download gem and unzip to vendor folder.
-
-Add the following lines to config/environment.rb
-
-  $LOAD_PATH << File.dirname(__FILE__) + '/../vendor/pulse-0.1.0/lib'
-  require 'pulse'
-
+  map.pulse 'heart/beat'
+  
+Now, the pulse URL will look like http://example.com/heart/beat
 
 == Configuration of haproxy
 

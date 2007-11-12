@@ -3,9 +3,16 @@ require 'test/unit'
 require 'open-uri'
 
 class InstallationTest < Test::Unit::TestCase
+
+  def setup
+    clean
+  end
+
+  def teardown
+    clean
+  end
   
   def test_install_pulse_as_plugin
-    clean
     create_new_rails_project 
     install_pulse_in_plugins
     add_route
@@ -13,7 +20,6 @@ class InstallationTest < Test::Unit::TestCase
   end
   
   def clean
-    sh "sudo gem uninstall pulse" unless `gem list | grep pulse`.empty?
     system "killall mongrel_rails"
     sh "rm -rf testapp"
   end
@@ -23,7 +29,7 @@ class InstallationTest < Test::Unit::TestCase
   end
   
   def install_pulse_in_plugins
-    sh "tar -C testapp/vendor/plugins -xvf pkg/pulse-#{VERSION}.tgz"
+    sh "tar -C testapp/vendor/plugins -xvf pkg/pulse-#{Version::VERSION}.tgz"
   end
   
   def add_route
