@@ -1,7 +1,9 @@
-class << ActionController::Routing::Routes;self;end.class_eval do
-  define_method :clear!, lambda {}
+module Pulse
+  module Routes
+    def pulse(path)
+      connect path, :controller => 'pulse', :action => 'pulse'
+    end
+  end
 end
 
-ActionController::Routing::Routes.draw do |map|
-  map.connect 'pulse', :controller => 'pulse', :action => 'pulse'
-end
+ActionController::Routing::RouteSet::Mapper.send :include, Pulse::Routes
