@@ -24,6 +24,11 @@ Rake::GemPackageTask.new(specification) do |package|
   package.need_tar = true
 end
 
+desc 'Upload RDoc'
+task :upload_rdoc => :rdoc do
+  sh "rsync -avzP doc/ pgross@rubyforge.org:/var/www/gforge-projects/pulse"
+end
+
 desc 'Generate RDoc'
 Rake::RDocTask.new do |task|
   task.main = 'README'
