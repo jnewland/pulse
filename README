@@ -2,7 +2,7 @@
 
 Pulse adds an action to your rails project that can be used for external health checking.  The most common 
 use is by a http proxy such as haproxy[http://haproxy.1wt.eu/].  A proxy can be configured to hit your servers 
-at a specified URL to see if the servers are healty.  By default, they use the "/" URL, but in many sites, this 
+at a specified URL to see if the servers are healthy.  By default, they use the "/" URL, but in many sites, this 
 can have side effects like creating a session.  Pulse adds a controller and action (usually at the "/pulse" URL) 
 which has no session and no logging.
 
