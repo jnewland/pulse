@@ -20,6 +20,7 @@ class InstallationTest < Test::Unit::TestCase
   end
   
   def clean
+    system "cd testapp && mongrel_rails stop --pid tmp/pids/mongrel.pid"
     system "killall mongrel_rails"
     sh "rm -rf testapp"
   end
@@ -30,6 +31,7 @@ class InstallationTest < Test::Unit::TestCase
   
   def install_pulse_in_plugins
     sh "tar -C testapp/vendor/plugins -xvf pkg/pulse-#{Version::VERSION}.tgz"
+    sh "mv testapp/vendor/plugins/pulse-#{Version::VERSION} testapp/vendor/plugins/pulse"
   end
   
   def add_route
@@ -39,9 +41,9 @@ class InstallationTest < Test::Unit::TestCase
   end
   
   def start_server_and_check_pulse
-    sh "cd testapp && ruby script/server -d"    
+    sh "cd testapp && mongrel_rails start -d --pid tmp/pids/mongrel.pid"
     sleep 1
-    assert_equal "OK", open("http://localhost:3000/pulse").read
+    assert_equal "<html><body>OK</body></html>", open("http://localhost:3000/pulse").read
   end
   
   def sh(cmd)

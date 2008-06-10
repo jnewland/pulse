@@ -13,10 +13,10 @@ by Paul[http://www.prgs.net] Gross[http://www.prgs.net]
 Pulse should be installed as a plugin:
 
   cd /path/to/rails/project
-  ruby script/plugin install http://pulse.rubyforge.org/svn/tags/pulse-0.2.0
+  ruby script/plugin install http://pulse.rubyforge.org/svn/tags/pulse-0.3.0
 
-  # Run the following command if you are using Rails 2.0
-  mv vendor/plugins/pulse-0.2.0 vendor/plugins/pulse
+  # Run the following command if you are using Rails 2.0 or higher
+  mv vendor/plugins/pulse-0.3.0 vendor/plugins/pulse
 
 And then add a route to config/routes.rb:
 

@@ -2,7 +2,7 @@ class PulseController < ActionController::Base
   session :off
 
   def pulse
-    render :text => "OK"
+    render :text => "<html><body>OK</body></html>"
   end
   
   def logger
