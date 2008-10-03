@@ -18,7 +18,7 @@ In your @config/environment.rb@:
 
 <pre>
   <code>
-    config.gem 'jnewland_pulse', :lib => 'pulse', :source => 'http://gems.github.com'
+    config.gem 'jnewland-pulse', :lib => 'pulse', :source => 'http://gems.github.com'
   </code>
 </pre>
 
