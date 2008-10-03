@@ -8,7 +8,6 @@ Gem::Specification.new do |s|
   s.homepage = %q{http://github.com/jnewland/pulse}
 
   s.files = [
-    "install.rb",
     "init.rb",
     "lib/pulse.rb",
     "lib/pulse_controller.rb",
