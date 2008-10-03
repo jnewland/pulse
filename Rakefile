@@ -1,54 +1,28 @@
-require 'rubygems'
-require 'rake/gempackagetask'
-require 'rake/testtask'
-require 'rake/rdoctask'
-require 'open-uri'
-require 'version'
-
-task :default => :test
-
-Gem::manage_gems
-
-specification = Gem::Specification.new do |s|
-  s.name = "pulse"
-  s.version = Version::VERSION
-  s.author = "Paul Gross"
-  s.email = "pgross@gmail.com"
-  s.homepage = "http://www.pgrs.net"
-  s.summary = "Adds a pulse url to Ruby on Rails."
-  s.files = FileList["README", "install.rb", "init.rb", "lib/**/*.rb"].to_a
+begin
+  require 'load_multi_rails_rake_tasks'
+  require 'spec'
+  require 'spec/rake/spectask'
+rescue LoadError
+  puts <<-EOS
+To use rspec for testing you must install rspec, rspec-rails, and multi_rails gems:
+  gem install rspec rspec-rails multi_rails
+EOS
+  exit(0)
 end
-
-Rake::GemPackageTask.new(specification) do |package|
-  package.need_zip = true
-  package.need_tar = true
+ 
+desc "Run the specs under spec/models"
+Spec::Rake::SpecTask.new do |t|
+  t.spec_opts = ['--options', "spec/spec.opts"]
+  t.spec_files = FileList['spec/*_spec.rb']
 end
-
-desc 'Upload RDoc'
-task :upload_rdoc => :rdoc do
-  sh "rsync -avzP doc/ pgross@rubyforge.org:/var/www/gforge-projects/pulse"
+ 
+# Make spec the default task
+# from http://blog.subterfusion.net/2008/rake-hacks-overriding-tasks-quick-binary-run-intelligent-irb/
+Rake::TaskManager.class_eval do
+  def remove_task(task_name)
+    @tasks.delete(task_name.to_s)
+  end
 end
-
-desc 'Generate RDoc'
-Rake::RDocTask.new do |task|
-  task.main = 'README'
-  task.title = 'Pulse'
-  task.rdoc_dir = 'doc'
-  task.options << "--line-numbers" << "--inline-source"
-  task.rdoc_files.include('README', 'lib/**/*.rb')
-end
-
-desc "Run all tests"
-task :test => [:'test:unit', :repackage, :'test:acceptance']
-
-Rake::TestTask.new(:'test:unit') { |t|
-  t.libs << "test"
-  t.pattern = 'test/unit/**/*_test.rb'
-  t.verbose = true
-}
-
-Rake::TestTask.new(:'test:acceptance') { |t|
-  t.libs << "test"
-  t.pattern = 'test/acceptance/**/*_test.rb'
-  t.verbose = true
-}
+ 
+Rake.application.remove_task :default
+task :default => :spec
