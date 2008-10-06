@@ -57,13 +57,11 @@ haproxy can be configured to use the /pulse url for its health checking.  Just a
   </code>
 </pre>
 
-You can adjust the interval and grace period for this check with the @check inter@ and @slowstart@ options. Since mongrel won't respond to HTTP requests until the entire Rails environment is loaded, this is essential.
-
 <pre>
   <code>
     listen rails :9000
-      server rails-1 localhost:8000 maxconn 1 check inter 20000 slowstart 90000
-      server rails-2 localhost:8001 maxconn 1 check inter 20000 slowstart 90000
+      server rails-1 localhost:8000 maxconn 1 check inter 20000 fall 1
+      server rails-2 localhost:8001 maxconn 1 check inter 20000 fall 1
       ...
   </code>
 </pre>
