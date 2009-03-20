@@ -1,5 +1,5 @@
 class PulseController < ActionController::Base
-  session :off
+  session :off unless Rails::VERSION::STRING >= "2.3"
 
   #The pulse action. Runs <tt>select 1</tt> on the DB. If a sane result is
   #returned, 'OK' is displayed and a 200 response code is returned. If not,
