@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name = %q{pulse}
-  s.version = "0.4.2"
+  s.version = "0.4.3"
   s.authors = ["Paul Gross", "Jesse Newland"]
   s.date = %q{2008-10-03}
   s.description = s.summary = %q{Adds a pulse action to a Rails app}
