@@ -1,9 +1,10 @@
 Gem::Specification.new do |s|
-  s.name = %q{pulse}
+  s.name = %q{rails-pulse}
   s.version = "0.4.3"
   s.authors = ["Paul Gross", "Jesse Newland"]
-  s.date = %q{2008-10-03}
-  s.description = s.summary = %q{Adds a pulse action to a Rails app}
+  s.date = %q{2009-12-01}
+  s.description = s.summary = %q{Adds a pulse URL that pings the DB to a Rails app.}
+  s.description += "\nThis is an improved version of the `pulse` gem."
   s.email = %q{jnewland@gmail.com}
   s.homepage = %q{http://github.com/jnewland/pulse}
 
