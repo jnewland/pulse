@@ -18,7 +18,7 @@ In your @config/environment.rb@:
 
 <pre>
   <code>
-    config.gem 'rails-pulse', :source => "http://gemcutter.org/"
+    config.gem 'rails-pulse', :source => "http://gemcutter.org/", :lib => "pulse"
   </code>
 </pre>
 
