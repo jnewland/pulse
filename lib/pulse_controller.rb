@@ -5,7 +5,10 @@ class PulseController < ActionController::Base
   #returned, 'OK' is displayed and a 200 response code is returned. If not,
   #'ERROR' is returned along with a 500 response code.
   def pulse
-    if (ActiveRecord::Base.connection.execute("select 1 from dual").num_rows rescue 0) == 1
+    if (ActiveRecord::Base::connection_pool.spec.adapter_method =~ /mysql2/) &&
+      ((ActiveRecord::Base.connection.execute("select 1 from dual").count rescue 0) == 1)
+      render :text => "<html><body>OK  #{Time.now.utc.to_s(:db)}</body></html>"
+    elsif (ActiveRecord::Base.connection.execute("select 1 from dual").num_rows rescue 0) == 1
       render :text => "<html><body>OK  #{Time.now.utc.to_s(:db)}</body></html>"
     else
       render :text => '<html><body>ERROR</body></html>', :status => :internal_server_error
