@@ -1,1 +1,1 @@
-require File.dirname(__FILE__) + "/lib/pulse"
+require File.dirname(__FILE__) + "/lib/rails-pulse"
