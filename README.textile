@@ -20,7 +20,7 @@ Just add the gem to your @Gemfile@ and then @bundle install@:
 
 <pre>
   <code>
-    gem 'rails-pulse', :require => "pulse"
+    gem 'rails-pulse'
   </code>
 </pre>
 
