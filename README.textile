@@ -14,6 +14,27 @@ h2. Requirements
 
 h2. Installation
 
+h3. Rails 3.x
+
+Just add the gem to your @Gemfile@ and then @bundle install@:
+
+<pre>
+  <code>
+    gem 'rails-pulse'
+  </code>
+</pre>
+
+In your @config/routes.rb@:
+
+<pre>
+  <code>
+    pulse '/my/pulse/url'
+  </code>
+</pre>
+
+
+h3. Rails 2.x
+
 In your @config/environment.rb@:
 
 <pre>

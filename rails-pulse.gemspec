@@ -1,24 +1,24 @@
 Gem::Specification.new do |s|
   s.name = %q{rails-pulse}
-  s.version = "0.4.5"
+  s.version = "0.4.7"
   s.authors = ["Paul Gross", "Jesse Newland", "Josh Goebel", "Will Farrington"]
-  s.date = %q{2011-02-07}
+  s.date = %q{2012-01-10}
   s.description = s.summary = %q{Adds a pulse URL that pings the DB to a Rails app.}
-  s.description += "\nThis is an improved version of the `pulse` gem."
+  s.description += "\nThis is the maintained version of the `pulse` gem."
   s.email = %q{jnewland@gmail.com}
   s.homepage = %q{http://github.com/jnewland/pulse}
 
-  s.files = [
-    "init.rb",
-    "lib/pulse.rb",
-    "lib/pulse_controller.rb",
-    "lib/pulse_helper.rb",
-    "lib/routes.rb",
-    "README.textile"
-  ]
+  # init.rb does not need to be in our gem
+  s.files = ["README.textile"] + Dir.glob("lib/**/*.rb")
+    
+  s.test_files = `git ls-files -- spec/*`.split("\n")
+  
+  s.extra_rdoc_files = [ "README.textile" ]
   s.require_paths = ["lib"]
 
   s.has_rdoc = false
+  
+  s.add_runtime_dependency "rails"
 
   s.rubygems_version = %q{1.2.0}
 end
