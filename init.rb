@@ -1,1 +1,2 @@
-require File.dirname(__FILE__) + "/lib/rails-pulse"
+$LOAD_PATH.unshift File.dirname(__FILE__) + "/lib"
+require 'rails-pulse'

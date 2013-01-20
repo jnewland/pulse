@@ -6,11 +6,12 @@ h3. Authors
 
 * "Paul Gross":http://www.prgs.net
 * "Jesse Newland":http://jnewland.com
+* "Josh Nichols":http://technicalpickles.com
 
 h2. Requirements
 
 * Rails
-* MySQL, Postgres, or Oracle. sqlite not supported, sorry.
+* MySQL, Postgres, or sqlite
 
 h2. Installation
 
@@ -28,7 +29,9 @@ In your @config/routes.rb@:
 
 <pre>
   <code>
-    pulse '/my/pulse/url'
+    pulse
+    # or customize the URL
+    pulse '/admin/pulse'
   </code>
 </pre>
 
@@ -56,7 +59,9 @@ Finally, add a route to config/routes.rb:
 
 <pre>
   <code>
-    map.pulse 'pulse'
+    map.pulse
+    # or customize the URL
+    map.pulse '/admin/pulse'
   </code>
 </pre>
 
