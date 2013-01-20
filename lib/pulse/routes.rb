@@ -1,6 +1,7 @@
 module Pulse
   module Routes
-    def pulse(path)
+    def pulse(path = nil)
+      path ||= "/pulse"
       if Rails::VERSION::MAJOR == 2
         connect path, :controller => 'pulse', :action => 'pulse'
       else
