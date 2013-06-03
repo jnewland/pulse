@@ -43,6 +43,8 @@ class PulseController < ActionController::Base
   def postgresql_healthy?
     select_one_count == 1
   end
+  
+  alias_method :postgis_healthy?, :postgresql_healthy?
 
   def select_one_count
     count = begin
