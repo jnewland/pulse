@@ -5,6 +5,12 @@ class PulseController < ActionController::Base
   # returned, 'OK' is displayed and a 200 response code is returned. If not,
   # 'ERROR' is returned along with a 500 response code.
   def pulse
+    Module.const_defined?("ActiveRecord") ? pulse_with_activerecord : pulse_without_activerecord
+  end
+
+  protected 
+
+  def pulse_with_activerecord
     adapter = ActiveRecord::Base::connection_pool.spec.config[:adapter]
 
     health_method = "#{adapter}_healthy?"
@@ -21,7 +27,9 @@ class PulseController < ActionController::Base
     end
   end
 
-  protected 
+  def pulse_without_activerecord
+    render :text => okay_response
+  end
 
   # cancel out loggin for the PulseController by defining logger as <tt>nil</tt>
   def logger
