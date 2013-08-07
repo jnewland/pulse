@@ -8,7 +8,10 @@ class PulseController < ActionController::Base
     adapter = ActiveRecord::Base::connection_pool.spec.config[:adapter]
 
     health_method = "#{adapter}_healthy?"
-    activerecord_okay = if respond_to?(health_method)
+
+    # Need to include all methods in respond_to? because Ruby 2.0 returns false
+    # even for protected methods.
+    activerecord_okay = if respond_to?(health_method, true)
                           send(health_method)
                         else
                           raise "Don't know how to check #{adapter}... please to fix?"
