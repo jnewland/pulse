@@ -11,7 +11,7 @@ h3. Authors
 h2. Requirements
 
 * Rails
-* MySQL, Postgres, or sqlite
+* MySQL, Postgres, sqlite, or no ActiveRecord module at all
 
 h2. Installation
 
