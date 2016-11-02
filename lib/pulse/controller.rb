@@ -1,3 +1,4 @@
+require 'ostruct'
 class PulseController < ActionController::Base
   session :off unless Rails::VERSION::STRING >= "2.3"
 
@@ -26,9 +27,8 @@ class PulseController < ActionController::Base
 
   protected 
 
-  # cancel out loggin for the PulseController by defining logger as <tt>nil</tt>
   def logger
-    nil
+    OpenStruct.new
   end
 
   def sqlite3_healthy?
