@@ -19,9 +19,10 @@ class PulseController < ActionController::Base
                         end
 
     if activerecord_okay
-      render :text => okay_response
+      render response_for_rails_version(Rails::VERSION::STRING, okay_response)
     else
-      render :text => error_response, :status => :internal_server_error
+      render response_for_rails_version(Rails::VERSION::STRING, error_response).
+        merge(:status => :internal_server_error)
     end
   end
 
@@ -78,6 +79,14 @@ class PulseController < ActionController::Base
   end
 
   def error_response
-    '<html><body>ERROR</body></html>'   
+    '<html><body>ERROR</body></html>'
+  end
+
+  def response_for_rails_version(rails_version_string, response)
+    if rails_version_string >= "4.1"
+      { :html => response.html_safe }
+    else
+      { :text => response }
+    end
   end
 end
