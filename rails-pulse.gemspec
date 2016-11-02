@@ -20,5 +20,9 @@ Gem::Specification.new do |s|
   
   s.add_runtime_dependency "rails"
 
+  s.add_development_dependency "rspec"
+  s.add_development_dependency "rspec-rails"
+  s.add_development_dependency "multi_rails"
+
   s.rubygems_version = %q{1.2.0}
 end
